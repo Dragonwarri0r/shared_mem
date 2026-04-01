@@ -1,0 +1,30 @@
+services:
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    ports:
+      - "3000:3000"
+    volumes:
+      - shared-space:/space
+    command:
+      - silverbullet
+      - serve
+      - --space
+      - /space
+
+  gateway:
+    build:
+      context: .
+      dockerfile: packages/gateway/Dockerfile
+    depends_on:
+      - silverbullet
+    environment:
+      GATEWAY_PORT: "${GATEWAY_PORT:-8787}"
+      SPACE_DIR: "${SPACE_DIR:-/space}"
+      API_KEY_SALT: "${API_KEY_SALT:-change-me}"
+    ports:
+      - "8787:8787"
+    volumes:
+      - shared-space:/space
+
+volumes:
+  shared-space:

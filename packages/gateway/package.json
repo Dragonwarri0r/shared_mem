@@ -1,0 +1,23 @@
+{
+  "name": "@share-mem/gateway",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.4",
+    "@share-mem/shared": "0.1.0",
+    "async-mutex": "^0.5.0",
+    "gray-matter": "^4.0.3",
+    "hono": "^4.9.6",
+    "nanoid": "^5.1.5"
+  }
+}
