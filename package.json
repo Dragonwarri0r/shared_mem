@@ -1,0 +1,25 @@
+{
+  "name": "share-mem",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Share Memory System MVP monorepo",
+  "packageManager": "npm@10.8.2",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @share-mem/shared && npm run build --workspace @share-mem/gateway && npm run build --workspace @share-mem/mcp-server && npm run build --workspace @share-mem/cli",
+    "dev:gateway": "npm run dev --workspace @share-mem/gateway",
+    "dev:cli": "npm run dev --workspace @share-mem/cli",
+    "dev:mcp": "npm run dev --workspace @share-mem/mcp-server",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "npm run build --workspace @share-mem/shared && npm run typecheck --workspace @share-mem/gateway && npm run typecheck --workspace @share-mem/mcp-server && npm run typecheck --workspace @share-mem/cli"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
